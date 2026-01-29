@@ -2,25 +2,47 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "ruin-note",
   "title": "Ruin Note",
-  "description": "",
+  "description": "Quick note capture and search with ruin CLI",
   "icon": "extension-icon.png",
   "author": "kvnd",
   "owner": "ruin",
   "platforms": [
-    "macOS",
-    "Windows"
+    "macOS"
   ],
   "categories": [
-    "Productivity",
-    "Applications"
+    "Productivity"
   ],
   "license": "MIT",
   "commands": [
     {
       "name": "capture-note",
       "title": "Capture Note",
-      "description": "",
-      "mode": "no-view"
+      "description": "Create a new note with optional title and tags",
+      "mode": "view"
+    },
+    {
+      "name": "search-notes",
+      "title": "Search Notes",
+      "description": "Search notes by tags, text, or date",
+      "mode": "view"
+    },
+    {
+      "name": "todays-notes",
+      "title": "Today's Notes",
+      "description": "View notes created today",
+      "mode": "view"
+    },
+    {
+      "name": "saved-queries",
+      "title": "Saved Queries",
+      "description": "Run and manage saved search queries",
+      "mode": "view"
+    },
+    {
+      "name": "manage-tags",
+      "title": "Manage Tags",
+      "description": "View, rename, and delete tags",
+      "mode": "view"
     }
   ],
   "dependencies": {

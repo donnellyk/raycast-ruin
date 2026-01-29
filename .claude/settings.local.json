@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(zed:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run fix-lint:*)",
+      "WebFetch(domain:developers.raycast.com)",
+      "Bash(ruin --help:*)",
+      "Bash(ruin log --help:*)",
+      "Bash(ruin search --help:*)",
+      "Bash(ruin tags --help:*)",
+      "Bash(ruin tags list --help:*)",
+      "Bash(ruin query --help:*)",
+      "Bash(ruin query list --help:*)",
+      "Bash(ruin query run --help:*)",
+      "Bash(ruin query save --help:*)",
+      "Bash(ruin config --help:*)",
+      "Bash(ruin tags list:*)",
+      "Bash(ruin search:*)",
+      "Bash(ruin query list:*)"
+    ]
+  }
+}

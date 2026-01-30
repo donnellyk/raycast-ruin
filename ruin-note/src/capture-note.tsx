@@ -29,7 +29,7 @@ export default function Command() {
       try {
         let finalContent = values.content;
         if (values.tags.length > 0) {
-          finalContent = `${values.content} ${values.tags.join(" ")}`;
+          finalContent = `${values.content}\n\n${values.tags.join(" ")}`;
         }
 
         createNote(finalContent);

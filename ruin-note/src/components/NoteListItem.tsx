@@ -1,33 +1,21 @@
 import { List, ActionPanel, Action } from "@raycast/api";
-import { useState, useEffect } from "react";
-import { readNoteContent, parseNoteContent, stripMarkdown } from "../lib/ruin";
+import { useMemo } from "react";
+import { readNoteContent } from "../lib/ruin";
+import { parseNoteForDisplay } from "../lib/noteParser";
 import type { Note } from "../lib/types";
 
-function useNoteContent(path: string) {
-  const [content, setContent] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    try {
-      const text = readNoteContent(path);
-      setContent(text);
-    } catch {
-      setContent(null);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [path]);
-
-  return { content, isLoading };
-}
-
 export function NoteListItem({ note }: { note: Note }) {
-  const { content, isLoading } = useNoteContent(note.path);
+  const { content, parsed } = useMemo(() => {
+    try {
+      const text = readNoteContent(note.path);
+      return { content: text, parsed: parseNoteForDisplay(text) };
+    } catch {
+      return { content: null, parsed: null };
+    }
+  }, [note.path]);
 
-  const parsed = content ? parseNoteContent(content) : null;
-  const displayTitle = parsed?.h1Title || note.title || note.path.split("/").pop() || "Untitled";
-  const subtitle = content ? stripMarkdown(content) : "";
+  const displayTitle = parsed?.title || note.path.split("/").pop() || "Untitled";
+  const subtitle = parsed?.subtitle || "";
 
   return (
     <List.Item
@@ -36,8 +24,7 @@ export function NoteListItem({ note }: { note: Note }) {
       subtitle={subtitle}
       detail={
         <List.Item.Detail
-          isLoading={isLoading}
-          markdown={parsed?.content || content || ""}
+          markdown={parsed?.bodyContent || content || ""}
           metadata={
             <List.Item.Detail.Metadata>
               {parsed &&

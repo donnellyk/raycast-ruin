@@ -3,7 +3,7 @@ export interface Note {
   path: string;
   uuid: string;
   title?: string;
-  tags: string[];
+  tags?: string[];
 }
 
 // Tag from `ruin tags list --json`

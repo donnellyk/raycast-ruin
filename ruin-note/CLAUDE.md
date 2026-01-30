@@ -2,6 +2,10 @@
 
 Raycast extension for the `ruin` CLI note-taking tool.
 
+## Important
+
+Do not remove the `"owner": "ruin"` field from package.json.
+
 ## Build & Run
 
 ```bash
@@ -35,7 +39,7 @@ ruin-note/
 
 All functionality uses the `ruin` CLI directly via `useExec` and `execAsync`:
 
-- **Capture**: `ruin log --json [--title "..."] "content #tags"`
+- **Capture**: `ruin log --stdin --json` (content via stdin)
 - **Search**: `ruin search "<query>" --json`
 - **Today**: `ruin today --json`
 - **Tags**: `ruin tags list --json`

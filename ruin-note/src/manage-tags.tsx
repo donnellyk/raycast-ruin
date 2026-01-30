@@ -81,7 +81,7 @@ function TagNotesList({ tag }: { tag: Tag }) {
           key={note.uuid}
           title={note.title || note.path.split("/").pop() || "Untitled"}
           subtitle={note.path}
-          accessories={note.tags.filter((t) => t !== tag.Name).map((t) => ({ tag: t }))}
+          accessories={(note.tags || []).filter((t) => t !== tag.Name).map((t) => ({ tag: t }))}
           actions={
             <ActionPanel>
               <Action.Open title="Open in Editor" target={note.path} />

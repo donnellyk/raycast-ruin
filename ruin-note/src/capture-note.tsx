@@ -5,7 +5,6 @@ import { createNote, listTags } from "./lib/ruin";
 import type { Tag } from "./lib/types";
 
 interface FormValues {
-  title: string;
   content: string;
   tags: string[];
 }
@@ -28,14 +27,12 @@ export default function Command() {
   const { handleSubmit, itemProps } = useForm<FormValues>({
     onSubmit: async (values) => {
       try {
-        // Append selected tags to content
         let finalContent = values.content;
         if (values.tags.length > 0) {
-          const tagStr = values.tags.join(" ");
-          finalContent = `${values.content} ${tagStr}`;
+          finalContent = `${values.content} ${values.tags.join(" ")}`;
         }
 
-        createNote(finalContent, values.title || undefined);
+        createNote(finalContent);
         await showHUD("Note created");
         await popToRoot();
       } catch (error) {
@@ -43,7 +40,6 @@ export default function Command() {
       }
     },
     initialValues: {
-      title: "",
       content: "",
       tags: [],
     },
@@ -61,7 +57,6 @@ export default function Command() {
         </ActionPanel>
       }
     >
-      <Form.TextField title="Title" placeholder="Optional title for the note" {...itemProps.title} />
       <Form.TextArea
         title="Content"
         placeholder="Note content (use #tags inline)"

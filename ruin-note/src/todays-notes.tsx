@@ -27,7 +27,7 @@ function NoteDetail({ note }: { note: Note }) {
         <Detail.Metadata>
           <Detail.Metadata.Label title="Path" text={note.path} />
           <Detail.Metadata.Label title="UUID" text={note.uuid} />
-          {note.tags.length > 0 && (
+          {note.tags && note.tags.length > 0 && (
             <Detail.Metadata.TagList title="Tags">
               {note.tags.map((tag) => (
                 <Detail.Metadata.TagList.Item key={tag} text={tag} />
@@ -89,7 +89,7 @@ export default function Command() {
             key={note.uuid}
             title={note.title || note.path.split("/").pop() || "Untitled"}
             subtitle={note.path}
-            accessories={note.tags.map((tag) => ({ tag }))}
+            accessories={(note.tags || []).map((tag) => ({ tag }))}
             actions={
               <ActionPanel>
                 <Action.Push title="View Note" icon={Icon.Eye} target={<NoteDetail note={note} />} />

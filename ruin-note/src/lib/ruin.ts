@@ -51,13 +51,12 @@ export function deleteQuery(name: string): void {
   exec(["query", "delete", name, "--force"]);
 }
 
-export function createNote(content: string, title?: string): LogResult {
-  const args = ["log", "--json"];
-  if (title) {
-    args.push("--title", JSON.stringify(title));
-  }
-  args.push(JSON.stringify(content));
-  const output = exec(args);
+export function createNote(content: string): LogResult {
+  const output = execSync(`${RUIN_PATH} log --stdin --json`, {
+    encoding: "utf-8",
+    input: content,
+    maxBuffer: 10 * 1024 * 1024,
+  });
   return JSON.parse(output) as LogResult;
 }
 

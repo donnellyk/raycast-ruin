@@ -1,11 +1,16 @@
-import { List, Icon, showToast, Toast } from "@raycast/api";
+import { List, Icon, showToast, Toast, LaunchProps } from "@raycast/api";
 import { useState, useEffect } from "react";
 import { searchNotes } from "./lib/ruin";
 import { NoteListItem } from "./components/NoteListItem";
 import type { Note } from "./lib/types";
 
-export default function Command() {
-  const [searchText, setSearchText] = useState("");
+interface LaunchContext {
+  query?: string;
+}
+
+export default function Command(props: LaunchProps<{ launchContext?: LaunchContext }>) {
+  const initialQuery = props.launchContext?.query || "";
+  const [searchText, setSearchText] = useState(initialQuery);
   const [notes, setNotes] = useState<Note[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 

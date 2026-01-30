@@ -43,6 +43,12 @@
       "title": "Manage Tags",
       "description": "View, rename, and delete tags",
       "mode": "view"
+    },
+    {
+      "name": "build-query",
+      "title": "Build Search Query",
+      "description": "Visual query builder for searching notes",
+      "mode": "view"
     }
   ],
   "dependencies": {
